@@ -184,7 +184,7 @@
 
     var client = new Keen({
       projectId: "<%= ENV['KEEN_PROJECT_ID'] %>",
-      readKey: "3fb80ef4f0898093405873e876bc66239ec5f7069f58f8e25f61d01d640ed9eced051c8d07af3f192ba91711c4e77808576d4d4c036c201023f8a518fd4d3880c69c304256ca1d89d928ff491f1842e647b163e86400f0ad3d2181de6fe10fea35d6f76b6f5403751d7abf9a743057bc"
+      readKey: "<%= ENV['KEEN_READ_KEY'] %>"
     });
 
     Keen.ready(function(){
