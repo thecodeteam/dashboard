@@ -16,16 +16,16 @@ require 'json'
 # example for tracking single user repositories
 # github_username = 'users/ephigenia'
 # example for tracking an organisations repositories
-cc_api_key = ENV['CONSTANT_CONTACT_API_KEY'] || '3tdrwcvw85xdjwqd7hh2kppd'
-cc_email_list = ENV['CONSTANT_CONTACT_EMAIL_LIST'] || '2134166034'
-cc_access_token = ENV['CONSTANT_CONTACT_ACCESS_TOKEN'] || 'ced2cce3-288b-4568-bcf1-f82a58c98ec5'
+cc_api_key = ENV['CONSTANT_CONTACT_API_KEY']
+#cc_email_list = ENV['CONSTANT_CONTACT_EMAIL_LIST'] || '2134166034'
+cc_access_token = ENV['CONSTANT_CONTACT_ACCESS_TOKEN']
 cc_host = ENV['CONSTANT_CONTACT_HOST'] || 'api.constantcontact.com'
 # number of repositories to display in the list
 max_length = 7
 # order the list by the numbers
 ordered = true
 
-SCHEDULER.every '3m', :first_in => 0 do |job|
+SCHEDULER.every '60m', :first_in => 0 do |job|
   #http = Net::HTTP.new("api.constantcontact.com", Net::HTTP.https_default_port())
   #http.use_ssl = true
   #uri = URI("https://api.constantcontact.com/v2/lists/#{cc_email_list}?api_key=#{cc_api_key}")

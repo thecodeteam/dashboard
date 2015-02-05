@@ -21,7 +21,7 @@ max_length = 7
 # order the list by the numbers
 ordered = true
 
-SCHEDULER.every '3m', :first_in => 0 do |job|
+SCHEDULER.every '60m', :first_in => 0 do |job|
   http = Net::HTTP.new("api.github.com", Net::HTTP.https_default_port())
   http.use_ssl = true
   http.verify_mode = OpenSSL::SSL::VERIFY_NONE # disable ssl certificate check
@@ -58,7 +58,10 @@ SCHEDULER.every '3m', :first_in => 0 do |job|
     send_event('github_user_repos_forks', { items: repos_forks.slice(0, max_length) })
     send_event('github_user_repos_watchers', { items: repos_watchers.slice(0, max_length) })
     send_event('github_user_repos_issues', { items: repos_issues.slice(0, max_length) })
-
+    Keen.publish_batch(:github_forks => repos_forks.slice(0, max_length))
+    Keen.publish_batch(:github_watchers => repos_watchers.slice(0, max_length))
+    Keen.publish_batch(:github_issues => repos_issues.slice(0, max_length))
+    #Keen.publish(:github_forks, { :repo => repos_forks[:label], :forks => repos_forks[:value].to_i })
   end # if
 
 end # SCHEDULER

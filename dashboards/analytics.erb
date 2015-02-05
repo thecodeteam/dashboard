@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Layouts &raquo; Thirds Grid</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/keen-dashboards.css">
+</head>
+<body class="application">
+
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="navbar-brand" href="./">EMC {code} &raquo; Analytics </a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-left">
+          <li><a href="https://dashboard.emccode.com">Home</a></li>
+          <li><a href="https://emccode.github.io">Team</a></li>
+          <li><a href="https://github.com/emccode/dashboard/">Source</a></li>
+          <li><a href="https://groups.google.com/forum/#!forum/emccode-users">Community</a></li>
+          <li><a href="http://stackoverflow.com/questions/tagged/emc?sort=newest&pageSize=15">Technical Support</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-sm-6 col-md-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Tweets from @EMCCODE
+          </div>
+          <div class="chart-stage" id="chart-02">
+            <div id="grid-1-1">
+              <img data-src="holder.js/100%x180/white/text:#grid-1-1">
+            </div>
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Followers of @EMCCODE
+          </div>
+          <div class="chart-stage" id="chart-03">
+            <img data-src="holder.js/100%x180/white">
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
+<!--
+      <div class="col-sm-6 col-md-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Followers of @EMCCODE
+          </div>
+          <div class="chart-stage" id="chart-03">
+            <img data-src="holder.js/100%x180/white">
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
+-->
+      <!-- end of three -->
+      <div class="col-sm-6 col-md-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Docker pulls
+          </div>
+          <div class="chart-stage" id="chart-04">
+            <img data-src="holder.js/100%x180/white">
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Docker stars
+          </div>
+          <div class="chart-stage" id="chart-05">
+            <img data-src="holder.js/100%x180/white">
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            GitHub Forks
+          </div>
+          <div class="chart-stage" id="chart-06">
+            <img data-src="holder.js/100%x180/white">
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
+      <!-- end of three -->
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            GitHub Watchers
+          </div>
+          <div class="chart-stage" id="chart-07">
+            <img data-src="holder.js/100%x180/white">
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            GitHub Issues
+          </div>
+          <div class="chart-stage" id="chart-08">
+            <img data-src="holder.js/100%x180/white">
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Cell Title
+          </div>
+          <div class="chart-stage">
+            <img data-src="holder.js/100%x180/white">
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <hr>
+
+    <p class="small text-muted">Built with &#9829; by <a href="https://keen.io">Keen IO</a></p>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1/Chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.4.1/holder.js"></script>
+  <script>
+    Holder.add_theme("white", { background:"#fff", foreground:"#a7a7a7", size:10 });
+  </script>
+
+  <script src="https://d26b395fwzu5fz.cloudfront.net/3.2.2/keen.min.js"></script>
+  <script src="assets/meta.js"></script>
+
+  <script>
+
+    var client = new Keen({
+      projectId: "<%= ENV['KEEN_PROJECT_ID'] %>",
+      readKey: "3fb80ef4f0898093405873e876bc66239ec5f7069f58f8e25f61d01d640ed9eced051c8d07af3f192ba91711c4e77808576d4d4c036c201023f8a518fd4d3880c69c304256ca1d89d928ff491f1842e647b163e86400f0ad3d2181de6fe10fea35d6f76b6f5403751d7abf9a743057bc"
+    });
+
+    Keen.ready(function(){
+      // ----------------------------------------
+      // Sample one
+      // ----------------------------------------
+      var el = document.getElementById("chart-01");
+      var query = new Keen.Query("maximum", {
+        eventCollection: "youtube_video_views",
+        interval: "daily",
+        target_property: "views",
+        groupBy: "youtube_video_title",
+        timeframe: "this_month"
+      });
+
+      client.draw(query, el, {
+        library: "chartjs",
+        chartType: "bar"
+      });
+      // ----------------------------------------
+      //  End sample one
+      // ----------------------------------------
+
+
+      // ----------------------------------------
+      // Sample two
+      // ----------------------------------------
+      var el = document.getElementById("chart-02");
+      var query = new Keen.Query("maximum", {
+        eventCollection: "twitter",
+        interval: "daily",
+        target_property: "tweets",
+        groupBy: "handle",
+        timeframe: "this_week"
+      });
+
+      client.draw(query, el, {
+        library: "chartjs",
+        chartType: "line"
+      });
+      // ----------------------------------------
+      // End sample two
+      // ----------------------------------------
+
+      // ----------------------------------------
+      // Sample three
+      // ----------------------------------------
+      var el = document.getElementById("chart-03");
+      var query = new Keen.Query("maximum", {
+        eventCollection: "twitter",
+        interval: "daily",
+        target_property: "followers",
+        groupBy: "handle",
+        timeframe: "this_week"
+
+      });
+
+      client.draw(query, el, {
+        library: "chartjs",
+        chartType: "line",
+        chartOptions: {
+          scaleBeginAtZero: true,
+          scaleStartValue: 400
+        }
+
+      });
+      // ----------------------------------------
+      // End sample three
+      // ----------------------------------------
+
+      // ----------------------------------------
+      // Sample four
+      // ----------------------------------------
+      var el = document.getElementById("chart-04");
+      var query = new Keen.Query("maximum", {
+        eventCollection: "docker",
+        groupBy: "title",
+        target_property: "pulls",
+      });
+      client.draw(query, el, {
+        library: "chartjs",
+        chartType: "pie"
+      });
+
+      // ----------------------------------------
+      // End sample four
+      // ----------------------------------------
+
+      // ----------------------------------------
+      // Sample five
+      // ----------------------------------------
+      var el = document.getElementById("chart-05");
+      var query = new Keen.Query("maximum", {
+        eventCollection: "docker",
+        groupBy: "title",
+        target_property: "stars",
+      });
+      client.draw(query, el, {
+        library: "chartjs",
+        chartType: "doughnut"
+      });
+      // ----------------------------------------
+      // End sample five
+      // ----------------------------------------
+      var github_forks = new Keen.Query("maximum", {
+        eventCollection: "github_forks",
+        groupBy: "label",
+        target_property: "value",
+      });
+      client.draw(github_forks, document.getElementById("chart-06"), {
+        chartType: "piechart",
+        title: false,
+        height: 250,
+        width: "auto",
+        chartOptions: {
+          chartArea: {
+            height: "85%",
+            left: "5%",
+            top: "5%",
+            width: "100%"
+          },
+          pieHole: .4
+        }
+      });
+
+      var impressions_timeline_by_device = new Keen.Query("maximum", {
+        eventCollection: "github_watchers",
+        groupBy: "label",
+        target_property: "value",
+      });
+      client.draw(impressions_timeline_by_device, document.getElementById("chart-07"), {
+        chartType: "piechart",
+        title: false,
+        height: 250,
+        width: "auto",
+        chartOptions: {
+          chartArea: {
+            height: "85%",
+            left: "5%",
+            top: "5%",
+            width: "100%"
+          },
+          pieHole: .4
+        }
+      });
+
+      var impressions_timeline_by_device = new Keen.Query("maximum", {
+        eventCollection: "github_issues",
+        groupBy: "label",
+        target_property: "value",
+      });
+      client.draw(impressions_timeline_by_device, document.getElementById("chart-08"), {
+        chartType: "columnchart",
+        title: false,
+        height: 250,
+        width: "auto",
+        chartOptions: {
+          chartArea: {
+            height: "85%",
+            left: "5%",
+            top: "5%",
+            width: "100%"
+          },
+          bar: {
+            groupWidth: "85%"
+          },
+          isStacked: true
+        }
+      });
+    });
+  </script>
+</body>
+</html>

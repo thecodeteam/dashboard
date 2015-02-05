@@ -29,6 +29,7 @@ GEM
       thor (~> 0.18.1)
     domain_name (0.5.23)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (1.0.2)
     equalizer (0.0.9)
     eventmachine (1.0.4)
     execjs (2.0.2)
@@ -127,6 +128,7 @@ PLATFORMS
 
 DEPENDENCIES
   dashing
+  dotenv
   keen
   mechanize
   nokogiri

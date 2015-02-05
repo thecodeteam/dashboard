@@ -25,7 +25,7 @@ max_length = 20
 # order the list by the numbers
 ordered = true
 
-SCHEDULER.every '3m', :first_in => 0 do |job|
+SCHEDULER.every '60m', :first_in => 0 do |job|
   uri = URI("https://api.stackexchange.com/2.2/questions?order=desc&sort=activity&tagged=emc&site=stackoverflow")
   http = Net::HTTP.new(uri.host, uri.port)
   http.use_ssl = true
