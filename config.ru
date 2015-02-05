@@ -5,7 +5,7 @@ require 'dashing'
 
 configure do
   set :auth_token, 'Horrible_AUTH_t0ken_S3crets_HER3'
-
+  set :default_dashboard, 'sample'
   helpers do
     def protected!
      # Put any authentication code you want in here.
