@@ -4,7 +4,7 @@ Dotenv.load
 require 'dashing'
 
 configure do
-  set :auth_token, 'YOUR_AUTH_TOKEN'
+  set :auth_token, 'Horrible_AUTH_t0ken_S3crets_HER3'
 
   helpers do
     def protected!
