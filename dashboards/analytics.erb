@@ -146,12 +146,12 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-6 col-md-4">
+      <div class="col-sm-6 col-md-6">
         <div class="chart-wrapper">
           <div class="chart-title">
             Cell Title
           </div>
-          <div class="chart-stage">
+          <div class="chart-stage" id="chart-09">
             <img data-src="holder.js/100%x180/white">
           </div>
           <div class="chart-notes">
@@ -352,6 +352,34 @@
             groupWidth: "85%"
           },
           isStacked: true
+        }
+      });
+
+      var el = document.getElementById("chart-09");
+      var query = new Keen.Query("maximum", {
+        eventCollection: "constantcontact",
+        interval: "daily",
+        target_property: "value",
+        groupBy: "label",
+        timeframe: "this_week",
+      });
+
+      client.draw(query, el, {
+        chartType: "columnchart",
+        title: false,
+        height: 250,
+        width: "auto",
+        chartOptions: {
+          chartArea: {
+            height: "85%",
+            left: "5%",
+            top: "5%",
+            width: "100%"
+          },
+          bar: {
+            groupWidth: "85%"
+          },
+          isStacked: false
         }
       });
     });

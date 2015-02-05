@@ -67,7 +67,7 @@ SCHEDULER.every '60m', :first_in => 0 do |job|
       end
 
       send_event('constant_contact_lists', { items: constant_contact_lists.slice(0, max_length) })
-
+      Keen.publish_batch(:constantcontact => constant_contact_lists.slice(0, max_length))
     end # if
 
   end # SCHEDULER
