@@ -362,6 +362,7 @@
         target_property: "value",
         groupBy: "label",
         timeframe: "this_week",
+        filters: [{"property_name":"label","operator":"contains","property_value":"EMC"}],
       });
 
       client.draw(query, el, {
