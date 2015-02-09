@@ -3,18 +3,19 @@ require 'net/http'
 require 'openssl'
 require 'json'
 
-# This job can track metrics of a public visible user or organisation’s repos
-# by using the public api of github.
+# Created by Jonas Rosland, https://github.com/virtualswede, https://twitter.com/virtualswede
+# and Kendrick Coleman, https://github.com/kacole2, https://twitter.com/kendrickcoleman
+# Template used from https://github.com/foobugs/foobugs-dashboard/blob/master/jobs/twitter_user.rb
+
+# This job can track metrics of Docker Hub downloads and stars
+# by scraping their public website since only stars and not downloads are
+# available through the API
 #
-# Note that this API only allows 60 requests per hour.
-#
-# This Job should use the `List` widget
+# This job should use the `List` widget
 
 # Config
 # ------
-# example for tracking single user repositories
-# github_username = 'users/ephigenia'
-# example for tracking an organisations repositories
+# Add the repository that you want to track here
 docker_username = ENV['DOCKER_USER_REPOS_USERNAME'] || 'emccode'
 # number of repositories to display in the list
 max_length = 7
@@ -27,7 +28,6 @@ SCHEDULER.every '3m', :first_in => 0 do |job|
   http.verify_mode = OpenSSL::SSL::VERIFY_NONE # disable ssl certificate check
   response = http.request(Net::HTTP::Get.new("/v1/search?q=#{docker_username}"))
   data = JSON.parse(response.body, :symbolize_names => true)
-  #puts data[:results]
   if response.code != "200"
     puts "docker api error (status-code: #{response.code})\n#{response.body}"
   else

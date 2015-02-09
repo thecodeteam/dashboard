@@ -1,66 +1,44 @@
-<% content_for :title do %>My super sweet dashboard<% end %>
+<% content_for :title do %>EMC {code} metrics dashboard<% end %>
 <div class="gridster">
   <ul>
-    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
-        <div data-id="twitter_user_tweets" data-view="Number" data-title="Tweets" style="background-color: #1d9fe3" data-link="https://twitter.com/emccode"></div>
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1" onclick="location.href='https://twitter.com/emccode';">
+        <div data-id="twitter_user_tweets" data-view="Number" data-title="Tweets" style="background-color: #1d9fe3"></div>
       <i class="icon-twitter icon-background"><a href="https://twitter.com/emccode"></a></i>
     </li>
-    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1" onclick="location.href='https://twitter.com/emccode';">
       <div data-id="twitter_user_followers" data-view="Number" data-title="Twitter Followers" style="background-color: #1d9fe3"></div>
       <i class="icon-twitter icon-background"></i>
     </li>
-<!--
-    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="twitter_mentions" data-view="Number" data-title="Twitter Mentions" style="background-color: #1d9fe3"></div>
-      <i class="icon-twitter icon-background"></i>
-    </li>
--->
-<!--    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
-      <div data-id="welcome" data-view="Text" data-title="EMC {code}" data-text="Social metrics FTW!" data-moreinfo="Protip: You can drag the widgets around!"></div>
-    </li>
-
-    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="synergy" data-view="Meter" data-title="Synergy" data-min="0" data-max="100"></div>
-    </li>
-
-    <li data-row="1" data-col="1" data-sizex="1" data-sizey="2">
-      <div data-id="buzzwords" data-view="List" data-unordered="true" data-title="Buzzwords" data-moreinfo="# of times said around the office"></div>
-    </li>
-
-    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="valuation" data-view="Number" data-title="Current Valuation" data-moreinfo="In billions" data-prefix="$"></div>
-    </li>
-
-    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
-      <div data-id="convergence" data-view="Graph" data-title="Convergence" style="background-color:#ff9618"></div>
-    </li>
--->
-    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1" onclick="location.href='https://github.com/emccode';">
       <div data-id="github_user_repos_watchers" data-view="List" data-unordered="true" data-title="Github Watchers" style="background-color: #4183C5"></div>
       <i class="icon-github icon-background"></i>
     </li>
-    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1" onclick="location.href='https://github.com/emccode';">
       <div data-id="github_user_repos_forks" data-view="List" data-unordered="true" data-title="Github Forks" style="background-color: #4183C5"></div>
       <i class="icon-github icon-background"></i>
     </li>
-    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1" onclick="location.href='https://github.com/emccode';">
       <div data-id="github_user_repos_issues" data-view="List" data-unordered="true" data-title="Github Open Issues" style="background-color: #4183C5"></div>
       <i class="icon-github icon-background"></i>
     </li>
-    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="youtube_video_views" data-view="Number" data-title="VagrantSpice Views" style="background-color: red"></div>
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1" onclick="location.href='https://www.youtube.com/watch?v=2fAkED310N0';">
+      <div data-id="youtube_video_views" data-view="Number" data-title="VagrantSpice Views" style="background-color: #c0392b"></div>
       <i class="icon-youtube icon-background"></i>
     </li>
     <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
-      <div data-id="constant_contact_lists" data-view="List" data-title="Email subscribers" style="background-color: 47bbb3"></div>
+      <div data-id="constant_contact_lists" data-view="List" data-unordered="true" data-title="Email subscribers" style="background-color: 47bbb3"></div>
       <i class="icon-envelope icon-background"></i>
     </li>
-    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
-      <div data-id="docker_user_repos_stars" data-view="List" data-title="Docker stars" style="background-color: 47bbb3"></div>
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1" onclick="location.href='https://registry.hub.docker.com/repos/emccode/';">
+      <div data-id="docker_hub_stars" data-view="List" data-unordered="true" data-title="Docker stars" style="background-color: #9b59b6"></div>
       <i class="icon-star icon-background"></i>
     </li>
-    <li data-row="1" data-col="2" data-sizex="4" data-sizey="2">
-      <div data-id="so_questions" data-view="List" data-title="StackOverflow Questions" style="background-color: 47bbb3" data-moreinfo="# of answers"></div>
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1" onclick="location.href='https://registry.hub.docker.com/repos/emccode/';">
+      <div data-id="docker_hub_pulls" data-view="List" data-unordered="true" data-title="Docker pulls" style="background-color: #9b59b6"></div>
+      <i class="icon-download icon-background"></i>
+    </li>
+    <li data-row="1" data-col="2" data-sizex="4" data-sizey="2" onclick="location.href='http://stackoverflow.com/questions/tagged/emc';">
+      <div data-id="so_questions" data-view="List" data-unordered="true" data-title="StackOverflow Questions" style="background-color: #e67e22" data-moreinfo="# of answers"></div>
       <i class="icon-stackexchange icon-background"></i>
     </li>
   </ul>
