@@ -12,6 +12,12 @@ configure do
      # This method is run before accessing any resource.
     end
   end
+  get '/widgets/:id.json' do
+  content_type :json
+  if data = settings.history[params[:id]]
+    data.split[1]
+  end
+end
 end
 
 map Sinatra::Application.assets_prefix do

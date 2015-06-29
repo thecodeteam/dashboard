@@ -9,7 +9,7 @@ require 'keen'
 # Config
 # ------
 # The youtube video id. Get this from the `v` parameter of the video’s url
-youtube_video_id = ENV['YOUTUBE_VIDEO_ID'] || '2fAkED310N0'
+youtube_video_id = ENV['YOUTUBE_VIDEO_ID'] || 'IEGPzmxyIpo'
 Keen.project_id = '54cb20d459949a318f0dc355'
 Keen.write_key = 'c268bcdf3ddab7ed848c39423841a31fa38f297dc68e8c784b874b097a40d8b8264e77446e9ff4c763f0ddb7986e5f2fa10f5827102f6881684d904b68469962e9f7780f00eab9b506f8920c213b5e4987fb125533eaaae556490aa5930dde3e73d0d8deb2ef15cfcc204b3a6abf71cc'
 
