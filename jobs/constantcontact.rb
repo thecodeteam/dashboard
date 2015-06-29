@@ -53,7 +53,9 @@ SCHEDULER.every '60m', :first_in => 0 do |job|
     if ordered
       constant_contact_lists = constant_contact_lists.sort_by { |obj| -obj[:value] }
     end
-
+    
+    constant_contact_subscribers =  constant_contact_lists.join(",").chomp('}').gsub!(/.*?(?=>)/im, "").tr('>>', '')
+    send_event('constant_contact_subscribers', current: constant_contact_subscribers)
     send_event('constant_contact_lists', { items: constant_contact_lists.slice(0, max_length) })
     Keen.publish_batch(:constantcontact => constant_contact_lists.slice(0, max_length))
   end # if
