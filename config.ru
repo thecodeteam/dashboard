@@ -14,10 +14,11 @@ configure do
   end
   get '/widgets/:id.json' do
   content_type :json
-  if data = settings.history[params[:id]]
-    data.split[1]
+    response['Access-Control-Allow-Origin'] = '*'
+    if data = settings.history[params[:id]]
+      data.split[1]
+    end
   end
-end
 end
 
 map Sinatra::Application.assets_prefix do
