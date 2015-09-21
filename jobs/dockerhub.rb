@@ -21,16 +21,20 @@ docker_username = ENV['DOCKER_USERNAME'] || 'emccode'
 mechanize = Mechanize.new
 max_length = 7
 ordered = true
+last_page_number = 4
+
 
 SCHEDULER.every '60m', :first_in => 0 do |job|
-  page = mechanize.get('https://registry.hub.docker.com/repos/' + docker_username)
+for page_number in 1..last_page_number
+  page = mechanize.get('https://hub.docker.com/u/' + docker_username + '?page=' + page_number.to_s)
   repoArray = []
-  page.search('.repo-list-item').each do |repo|
-    repoTitle = repo.at('.repo-list-item-description h2').text.strip.gsub(/\s.+/, '')
-    repoStars = repo.at('.repo-list-item-stats-left div').text.strip
-    repoPulls = repo.at('.repo-list-item-stats-right div').text.strip
+  page.search('.RepositoryListItem__flexible___9wm16').each do |repo|
+    repoTitle = repo.at('.RepositoryListItem__repoName___3iIWs').text.strip.gsub(/\s.+/, '')
+    repoStars = repo.at('.RepositoryListItem__stats___3GILF:nth-child(2)').text.strip.gsub('STARS', '')
+    repoPulls = repo.at('.RepositoryListItem__stats___3GILF:nth-child(3)').text.strip.gsub('PULLS', '')
     repoArray.push({title: repoTitle, stars: repoStars.to_i, pulls: repoPulls.to_i})
   end
+  puts repoArray
   repos_stars = Array.new
   repos_pulls = Array.new
   repoArray.each do |repo|
@@ -50,4 +54,5 @@ SCHEDULER.every '60m', :first_in => 0 do |job|
   send_event('docker_hub_stars', { items: repos_stars.slice(0, max_length) })
   send_event('docker_hub_pulls', { items: repos_pulls.slice(0, max_length) })
   Keen.publish_batch(:docker => repoArray.slice(0, max_length))
+end
 end
