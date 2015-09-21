@@ -29,7 +29,7 @@ SCHEDULER.every '1m', :first_in => 0 do |job|
   for page_number in 1..last_page_number
     page = mechanize.get('https://hub.docker.com/u/' + docker_username + '?page=' + page_number.to_s)
     page.search('.RepositoryListItem__flexible___9wm16').each do |repo|
-      repoTitle = repo.at('.RepositoryListItem__repoName___3iIWs').text.strip.gsub(/\s.+/, '')
+      repoTitle = repo.at('.RepositoryListItem__repoName___3iIWs').text.strip.gsub(docker_username + '/', '')
       repoStars = repo.at('.RepositoryListItem__stats___3GILF:nth-child(2)').text.strip.gsub('STARS', '')
       repoPulls = repo.at('.RepositoryListItem__stats___3GILF:nth-child(3)').text.strip.gsub('PULLS', '')
       repoArray.push({title: repoTitle, stars: repoStars.to_i, pulls: repoPulls.to_i})

@@ -1,13 +1,17 @@
 <% content_for :title do %>EMC {code} metrics dashboard<% end %>
 <div class="gridster">
   <ul>
-    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1" onclick="location.href='https://twitter.com/emccode';">
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1" onclick="location.href='https://twitter.com/emccode';">
         <div data-id="twitter_user_tweets" data-view="Number" data-title="Tweets" style="background-color: #1d9fe3"></div>
       <i class="icon-twitter icon-background"><a href="https://twitter.com/emccode"></a></i>
     </li>
-    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1" onclick="location.href='https://twitter.com/emccode';">
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1" onclick="location.href='https://twitter.com/emccode';">
       <div data-id="twitter_user_followers" data-view="Number" data-title="Twitter Followers" style="background-color: #1d9fe3"></div>
       <i class="icon-twitter icon-background"></i>
+    </li>
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+      <div data-id="constant_contact_lists" data-view="List" data-unordered="true" data-title="Email subscribers" style="background-color: 47bbb3"></div>
+      <i class="icon-envelope icon-background"></i>
     </li>
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1" onclick="location.href='https://github.com/emccode';">
       <div data-id="github_user_repos_watchers" data-view="List" data-unordered="true" data-title="Github Watchers" style="background-color: #4183C5"></div>
@@ -21,19 +25,15 @@
       <div data-id="github_user_repos_issues" data-view="List" data-unordered="true" data-title="Github Open Issues" style="background-color: #4183C5"></div>
       <i class="icon-github icon-background"></i>
     </li>
-    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1" onclick="location.href='https://www.youtube.com/watch?v=2fAkED310N0';">
-      <div data-id="youtube_video_views" data-view="Number" data-title="VagrantSpice Views" style="background-color: #c0392b"></div>
+    <li data-row="1" data-col="2" data-sizex="4" data-sizey="1" onclick="location.href='https://www.youtube.com/playlist?list=PLbssOJyyvHuWiBQAg9EFWH570timj2fxt';">
+      <div data-id="youtube_video_views" data-view="List" data-title="YouTube Views" style="background-color: #c0392b"></div>
       <i class="icon-youtube icon-background"></i>
     </li>
-    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
-      <div data-id="constant_contact_lists" data-view="List" data-unordered="true" data-title="Email subscribers" style="background-color: 47bbb3"></div>
-      <i class="icon-envelope icon-background"></i>
-    </li>
-    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1" onclick="location.href='https://registry.hub.docker.com/repos/emccode/';">
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1" onclick="location.href='https://hub.docker.com/u/emccode/';">
       <div data-id="docker_hub_stars" data-view="List" data-unordered="true" data-title="Docker stars" style="background-color: #9b59b6"></div>
       <i class="icon-star icon-background"></i>
     </li>
-    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1" onclick="location.href='https://registry.hub.docker.com/repos/emccode/';">
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1" onclick="location.href='https://hub.docker.com/u/emccode//';">
       <div data-id="docker_hub_pulls" data-view="List" data-unordered="true" data-title="Docker pulls" style="background-color: #9b59b6"></div>
       <i class="icon-download icon-background"></i>
     </li>
