@@ -24,16 +24,18 @@ ordered = true
 last_page_number = 4
 
 
-SCHEDULER.every '60m', :first_in => 0 do |job|
-for page_number in 1..last_page_number
-  page = mechanize.get('https://hub.docker.com/u/' + docker_username + '?page=' + page_number.to_s)
+SCHEDULER.every '1m', :first_in => 0 do |job|
   repoArray = []
-  page.search('.RepositoryListItem__flexible___9wm16').each do |repo|
-    repoTitle = repo.at('.RepositoryListItem__repoName___3iIWs').text.strip.gsub(/\s.+/, '')
-    repoStars = repo.at('.RepositoryListItem__stats___3GILF:nth-child(2)').text.strip.gsub('STARS', '')
-    repoPulls = repo.at('.RepositoryListItem__stats___3GILF:nth-child(3)').text.strip.gsub('PULLS', '')
-    repoArray.push({title: repoTitle, stars: repoStars.to_i, pulls: repoPulls.to_i})
+  for page_number in 1..last_page_number
+    page = mechanize.get('https://hub.docker.com/u/' + docker_username + '?page=' + page_number.to_s)
+    page.search('.RepositoryListItem__flexible___9wm16').each do |repo|
+      repoTitle = repo.at('.RepositoryListItem__repoName___3iIWs').text.strip.gsub(/\s.+/, '')
+      repoStars = repo.at('.RepositoryListItem__stats___3GILF:nth-child(2)').text.strip.gsub('STARS', '')
+      repoPulls = repo.at('.RepositoryListItem__stats___3GILF:nth-child(3)').text.strip.gsub('PULLS', '')
+      repoArray.push({title: repoTitle, stars: repoStars.to_i, pulls: repoPulls.to_i})
+    end
   end
+  puts "Full array:"
   puts repoArray
   repos_stars = Array.new
   repos_pulls = Array.new
@@ -46,13 +48,15 @@ for page_number in 1..last_page_number
       label: repo[:title],
       value: repo[:pulls]
       })
-    end
-    if ordered
-      repos_stars = repos_stars.sort_by { |obj| -obj[:value] }
-      repos_pulls = repos_pulls.sort_by { |obj| -obj[:value] }
-    end
+  end
+  if ordered
+    repos_stars = repos_stars.sort_by { |obj| -obj[:value] }
+    repos_pulls = repos_pulls.sort_by { |obj| -obj[:value] }
+    puts "Ordered:"
+    puts repos_stars
+    puts repos_pulls
+  end
   send_event('docker_hub_stars', { items: repos_stars.slice(0, max_length) })
   send_event('docker_hub_pulls', { items: repos_pulls.slice(0, max_length) })
   Keen.publish_batch(:docker => repoArray.slice(0, max_length))
-end
 end
