@@ -10,10 +10,8 @@ require 'keen'
 # Config
 # ------
 # The youtube video id. Get this from the `v` parameter of the video’s url
-youtube_api_key =  ENV['YOUTUBE_API_KEY'] || 'AIzaSyC71wORUPewT2nSY3f8fJhG4pXSg8T4QMA'
+youtube_api_key =  ENV['YOUTUBE_API_KEY'] || 'YOUR_KEY_HERE'
 youtube_playlist_id = ENV['YOUTUBE_PLAYLIST_ID'] || 'PLbssOJyyvHuWiBQAg9EFWH570timj2fxt'
-#Keen.project_id = '54cb20d459949a318f0dc355'
-#Keen.write_key = 'c268bcdf3ddab7ed848c39423841a31fa38f297dc68e8c784b874b097a40d8b8264e77446e9ff4c763f0ddb7986e5f2fa10f5827102f6881684d904b68469962e9f7780f00eab9b506f8920c213b5e4987fb125533eaaae556490aa5930dde3e73d0d8deb2ef15cfcc204b3a6abf71cc'
 max_results = 50
 # order the list by the numbers
 ordered = true
@@ -66,7 +64,7 @@ SCHEDULER.every '1m', :first_in => 0 do |job|
       #send_event('youtube_video_likes', current: videos[0]['likeCount'])
       #send_event('youtube_video_comments', current: videos[0]['commentCount'])
       #send_event('youtube_video_favorites', current: videos[0]['favoriteCount'])
-      #Keen.publish(:youtube_video_views, { :youtube_video_title => videos[0]['title'], :views => videos[0]['viewCount'] })
+      Keen.publish(:youtube_video_views, { :youtube_video_title => youtube_stats[:label], :views => youtube_stats[:value] })
     else
       puts youtube_stats
     end
