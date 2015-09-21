@@ -3,7 +3,7 @@ require 'net/http'
 require 'openssl'
 require 'json'
 
-# Created by Jonas Rosland, https://github.com/virtualswede, https://twitter.com/virtualswede
+# Created by Jonas Rosland, https://github.com/jonasrosland, https://twitter.com/jonasrosland
 # Template used from https://github.com/foobugs/foobugs-dashboard/blob/master/jobs/github_user_repos.rb
 
 # This job can track metrics of a ConstantContact email distribution list
@@ -53,7 +53,7 @@ SCHEDULER.every '60m', :first_in => 0 do |job|
     if ordered
       constant_contact_lists = constant_contact_lists.sort_by { |obj| -obj[:value] }
     end
-    
+
     constant_contact_subscribers =  constant_contact_lists.join(",").chomp('}').gsub!(/.*?(?=>)/im, "").tr('>>', '')
     send_event('constant_contact_subscribers', current: constant_contact_subscribers)
     send_event('constant_contact_lists', { items: constant_contact_lists.slice(0, max_length) })
