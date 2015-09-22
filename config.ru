@@ -4,7 +4,7 @@ Dotenv.load
 require 'dashing'
 
 configure do
-  set :auth_token, 'Horrible_AUTH_t0ken_S3crets_HER3'
+  set :auth_token, ENV['DASHING_AUTH_TOKEN'] || SecureRandom.uuid
   set :default_dashboard, 'sample'
   helpers do
     def protected!
