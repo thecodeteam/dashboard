@@ -64,7 +64,7 @@ SCHEDULER.every '1m', :first_in => 0 do |job|
       #send_event('youtube_video_likes', current: videos[0]['likeCount'])
       #send_event('youtube_video_comments', current: videos[0]['commentCount'])
       #send_event('youtube_video_favorites', current: videos[0]['favoriteCount'])
-      Keen.publish(:youtube_video_views, { :youtube_video_title => youtube_stats[:label], :views => youtube_stats[:value] })
+      #Keen.publish(:youtube_video_views, { :youtube_video_title => youtube_stats[:label], :views => youtube_stats[:value] })
     else
       puts youtube_stats
     end
