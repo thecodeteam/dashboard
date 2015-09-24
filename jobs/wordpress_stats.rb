@@ -8,7 +8,8 @@ require 'json'
 
 # This job tracks stats for your Wordpress blog
 #
-# This job should use the `List` widget
+# This job should use the `Numbers` and `List` widgets
+# One for the total of the blog and one for a list of the most popular posts
 
 # Config
 # ------
@@ -22,7 +23,7 @@ ordered = true
 wp_period = 'year'
 number_of_periods = 5
 
-SCHEDULER.every '1m', :first_in => 0 do |job|
+SCHEDULER.every '60m', :first_in => 0 do |job|
   http = Net::HTTP.new(wp_host, 443)
   all = Net::HTTP::Get.new("https://#{wp_host}/rest/v1.1/sites/#{wp_site}/stats/summary?period=#{wp_period}&num=#{number_of_periods}&pretty=true", initheader = {'Content-Type' =>'application/json', 'Authorization' => "Bearer #{wp_bearer}"})
   posts = Net::HTTP::Get.new("https://#{wp_host}/rest/v1.1/sites/#{wp_site}/stats/top-posts?&period=#{wp_period}&max=#{max_length}&num=#{number_of_periods}&pretty=true", initheader = {'Content-Type' =>'application/json', 'Authorization' => "Bearer #{wp_bearer}"})
@@ -34,7 +35,7 @@ SCHEDULER.every '1m', :first_in => 0 do |job|
   data_all = JSON.parse(response_all.body, :symbolize_names => true)
   data_posts = JSON.parse(response_posts.body, :symbolize_names => true)
   if response_all.code != "200"
-    puts "wordpress api error (status-code: #{response.code})\n#{response.body}"
+    puts "wordpress api error (status-code: #{response_all.code})\n#{response_all.body}"
   else
 
     posts_stats = Array.new
