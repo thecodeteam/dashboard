@@ -15,9 +15,16 @@ require 'json'
 # ------
 wp_host = ENV['WORDPRESS_HOST'] || 'public-api.wordpress.com'
 wp_site = ENV['WORDPRESS_SITE'] || 'blog.emccode.com'
-wp_bearer = ENV['WORDPRESS_BEARER'] || 'YOUR_TOKEN_HERE'
+
+# The following line is only needed if you're deploying to Cloud Foundry
+wp_bearer = JSON.parse(ENV['VCAP_SERVICES'], :symbolize_names => true)[:'user-provided'][0][:credentials][:wordpress_api]
+
+# If you're deploying Dashing locally you can uncomment the following line
+#wp_bearer = ENV['WORDPRESS_BEARER'] || 'YOUR_TOKEN_HERE'
+
 # number of posts to display in the list
 max_length = 8
+
 # order the list by the numbers
 ordered = true
 wp_period = 'year'
