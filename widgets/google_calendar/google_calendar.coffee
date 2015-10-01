@@ -19,8 +19,10 @@ class Dashing.GoogleCalendar extends Dashing.Widget
     for next_event in rest
       start = moment(next_event.start)
       start_date = start.format('Do MMM')
+      end = moment(next_event.end)
+      end_date = end.subtract(1, 'days').format('Do MMM')
       #start_time = start.format('HH:mm')
 
       #next_events.push { summary: next_event.summary, start_date: start_date, start_time: start_time }
-      next_events.push { summary: next_event.summary, start_date: start_date }
+      next_events.push { summary: next_event.summary, start_date: start_date, end_date: end_date }
     @set('next_events', next_events)
