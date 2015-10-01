@@ -2,6 +2,7 @@
 require 'net/http'
 require 'openssl'
 require 'json'
+require 'keen'
 
 # Created by Jonas Rosland, https://github.com/jonasrosland, https://twitter.com/jonasrosland
 # Template used from https://github.com/foobugs/foobugs-dashboard/blob/master/jobs/github_user_repos.rb
@@ -62,6 +63,8 @@ SCHEDULER.every '60m', :first_in => 0 do |job|
 
     send_event('wordpress_total_views', { current: data_all[:views] })
     send_event('wordpress_posts_views', { items: posts_stats.slice(0, max_length) })
+    Keen.publish_batch(:wordpress_posts_views => posts_stats.slice(0, max_length))
+    Keen.publish(:wordpress_views, { :handle => 'emccode', :views => data_all[:views] })
 
   end # if
 
