@@ -5,7 +5,7 @@ require 'dashing'
 
 configure do
   set :auth_token, ENV['DASHING_AUTH_TOKEN'] || SecureRandom.uuid
-  set :default_dashboard, 'sample'
+  set :default_dashboard, 'stats'
   helpers do
     def protected!
      # Put any authentication code you want in here.
