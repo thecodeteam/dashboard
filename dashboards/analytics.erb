@@ -26,8 +26,8 @@
           <li><a href="http://dashboard.emccode.com">Home</a></li>
           <li><a href="http://emccode.github.io">Team</a></li>
           <li><a href="https://github.com/emccode/dashboard/">Source</a></li>
-          <li><a href="https://groups.google.com/forum/#!forum/emccode-users">Community</a></li>
-          <li><a href="http://stackoverflow.com/questions/tagged/emc?sort=newest&pageSize=15">Technical Support</a></li>
+          <li><a href="http://community.emccode.com">Community</a></li>
+          <!-- <li><a href="http://stackoverflow.com/questions/tagged/emc?sort=newest&pageSize=15">Technical Support</a></li> -->
         </ul>
       </div>
     </div>
@@ -159,6 +159,34 @@
           </div>
         </div>
       </div>
+      <!--
+      <div class="col-sm-6 col-md-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Wordpress Views
+          </div>
+          <div class="chart-stage" id="chart-10">
+            <img data-src="holder.js/100%x180/white">
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
+    -->
+      <div class="col-sm-6 col-md-6">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Popular wordpress posts
+          </div>
+          <div class="chart-stage" id="chart-11">
+            <img data-src="holder.js/100%x180/white">
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
     </div>
 
 
@@ -215,10 +243,10 @@
       var el = document.getElementById("chart-02");
       var query = new Keen.Query("maximum", {
         eventCollection: "twitter",
-        interval: "daily",
+        interval: "weekly",
         target_property: "tweets",
         groupBy: "handle",
-        timeframe: "this_month"
+        timeframe: "last_2_months"
       });
 
       client.draw(query, el, {
@@ -235,21 +263,16 @@
       var el = document.getElementById("chart-03");
       var query = new Keen.Query("maximum", {
         eventCollection: "twitter",
-        interval: "daily",
+        interval: "weekly",
         target_property: "followers",
         groupBy: "handle",
-        timeframe: "this_month"
+        timeframe: "last_2_months"
 
       });
 
       client.draw(query, el, {
         library: "chartjs",
-        chartType: "line",
-        chartOptions: {
-          scaleBeginAtZero: true,
-          scaleStartValue: 400
-        }
-
+        chartType: "line"
       });
       // ----------------------------------------
       // End sample three
@@ -337,7 +360,7 @@
         target_property: "value",
       });
       client.draw(impressions_timeline_by_device, document.getElementById("chart-08"), {
-        chartType: "columnchart",
+        chartType: "piechart",
         title: false,
         height: 250,
         width: "auto",
@@ -358,15 +381,39 @@
       var el = document.getElementById("chart-09");
       var query = new Keen.Query("maximum", {
         eventCollection: "constantcontact",
-        interval: "daily",
+        interval: "weekly",
         target_property: "value",
         groupBy: "label",
-        timeframe: "this_week",
+        timeframe: "last_2_months",
         filters: [{"property_name":"label","operator":"contains","property_value":"EMC"}],
       });
 
       client.draw(query, el, {
-        chartType: "columnchart",
+        library: "chartjs",
+        chartType: "line"
+      });
+
+      var el = document.getElementById("chart-10");
+      var query = new Keen.Query("maximum", {
+        eventCollection: "wordpress_views",
+        interval: "weekly",
+        target_property: "views",
+        groupBy: "handle",
+        timeframe: "today"
+      });
+
+      client.draw(query, el, {
+        library: "chartjs",
+        chartType: "line"
+      });
+
+      var impressions_timeline_by_device = new Keen.Query("maximum", {
+        eventCollection: "wordpress_posts_views",
+        groupBy: "label",
+        target_property: "value",
+      });
+      client.draw(impressions_timeline_by_device, document.getElementById("chart-11"), {
+        chartType: "piechart",
         title: false,
         height: 250,
         width: "auto",
@@ -377,10 +424,7 @@
             top: "5%",
             width: "100%"
           },
-          bar: {
-            groupWidth: "85%"
-          },
-          isStacked: false
+          pieHole: .4
         }
       });
     });
