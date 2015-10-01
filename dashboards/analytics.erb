@@ -288,8 +288,22 @@
         target_property: "pulls",
       });
       client.draw(query, el, {
-        library: "chartjs",
-        chartType: "pie"
+        chartType: "piechart",
+        title: false,
+        height: 250,
+        width: "auto",
+        chartOptions: {
+          chartArea: {
+            height: "85%",
+            left: "5%",
+            top: "5%",
+            width: "100%"
+          },
+          bar: {
+            groupWidth: "85%"
+          },
+          isStacked: true
+        }
       });
 
       // ----------------------------------------
@@ -306,8 +320,22 @@
         target_property: "stars",
       });
       client.draw(query, el, {
-        library: "chartjs",
-        chartType: "doughnut"
+        chartType: "piechart",
+        title: false,
+        height: 250,
+        width: "auto",
+        chartOptions: {
+          chartArea: {
+            height: "85%",
+            left: "5%",
+            top: "5%",
+            width: "100%"
+          },
+          bar: {
+            groupWidth: "85%"
+          },
+          isStacked: true
+        }
       });
       // ----------------------------------------
       // End sample five
