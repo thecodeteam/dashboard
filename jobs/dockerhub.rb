@@ -35,6 +35,7 @@ SCHEDULER.every '1m', :first_in => 0 do |job|
       repoArray.push({title: repoTitle, stars: repoStars.to_i, pulls: repoPulls.to_i})
     end
   end
+  puts repoArray
   repos_stars = Array.new
   repos_pulls = Array.new
   repoArray.each do |repo|
@@ -51,7 +52,9 @@ SCHEDULER.every '1m', :first_in => 0 do |job|
     repos_stars = repos_stars.sort_by { |obj| -obj[:value] }
     repos_pulls = repos_pulls.sort_by { |obj| -obj[:value] }
   end
+  puts ordered
+  puts repos_pulls
   send_event('docker_hub_stars', { items: repos_stars.slice(0, max_length) })
   send_event('docker_hub_pulls', { items: repos_pulls.slice(0, max_length) })
-  Keen.publish_batch(:docker => repoArray.slice(0, max_length))
+  Keen.publish_batch(:docker => repoArray)
 end
