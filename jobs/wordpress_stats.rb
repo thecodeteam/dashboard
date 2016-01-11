@@ -31,7 +31,7 @@ ordered = true
 wp_period = 'year'
 number_of_periods = 5
 
-SCHEDULER.every '60m', :first_in => 0 do |job|
+SCHEDULER.every '1d', :first_in => 0 do |job|
   http = Net::HTTP.new(wp_host, 443)
   all = Net::HTTP::Get.new("https://#{wp_host}/rest/v1.1/sites/#{wp_site}/stats/summary?period=#{wp_period}&num=#{number_of_periods}&pretty=true", initheader = {'Content-Type' =>'application/json', 'Authorization' => "Bearer #{wp_bearer}"})
   posts = Net::HTTP::Get.new("https://#{wp_host}/rest/v1.1/sites/#{wp_site}/stats/top-posts?&period=#{wp_period}&max=#{max_length}&num=#{number_of_periods}&pretty=true", initheader = {'Content-Type' =>'application/json', 'Authorization' => "Bearer #{wp_bearer}"})
