@@ -246,7 +246,7 @@
         interval: "weekly",
         target_property: "tweets",
         groupBy: "handle",
-        timeframe: "last_2_months"
+        timeframe: "this_3_months"
       });
 
       client.draw(query, el, {
@@ -266,7 +266,7 @@
         interval: "weekly",
         target_property: "followers",
         groupBy: "handle",
-        timeframe: "last_2_months"
+        timeframe: "this_3_months"
 
       });
 
@@ -412,7 +412,7 @@
         interval: "weekly",
         target_property: "value",
         groupBy: "label",
-        timeframe: "last_2_months",
+        timeframe: "this_3_months",
         filters: [{"property_name":"label","operator":"contains","property_value":"EMC"}],
       });
 
