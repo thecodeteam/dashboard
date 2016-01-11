@@ -16,7 +16,7 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu/ $(lsb_release -sc) main universe
 RUN apt-get update
 
 # Install basic applications
-RUN apt-get install -y tar git curl nano wget dialog net-tools build-essential unzip
+RUN apt-get install -y tar git curl nano wget dialog net-tools build-essential unzip zlib1g-dev
 
 # Install Python and Basic Python Tools
 RUN apt-get install -y ruby-dev nodejs
@@ -26,10 +26,10 @@ RUN gem install dashing
 RUN gem install bundler
 
 # Copy the application folder inside the container
-#ADD . /social-dashboard
+ADD . /social-dashboard
 
 # Install Dashing into /social-dashboard
-RUN dashing new social-dashboard
+#RUN dashing new social-dashboard
 
 # Bundle the dashboard
 RUN cd /social-dashboard && bundle
