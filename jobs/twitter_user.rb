@@ -10,7 +10,7 @@ require 'keen'
 # ------
 twitter_username = ENV['TWITTER_USERNAME'] || 'emccode'
 
-SCHEDULER.every '60m', :first_in => 0 do |job|
+SCHEDULER.every '1d', :first_in => 0 do |job|
   doc = Nokogiri::HTML(open("https://twitter.com/#{twitter_username}"))
   tweets = doc.css('a[data-nav=tweets]').first.attributes['title'].value.split(' ').first
   followers = doc.css('a[data-nav=followers]').first.attributes['title'].value.split(' ').first

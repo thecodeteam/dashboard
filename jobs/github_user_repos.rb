@@ -21,7 +21,7 @@ max_length = 7
 # order the list by the numbers
 ordered = true
 
-SCHEDULER.every '60m', :first_in => 0 do |job|
+SCHEDULER.every '1d', :first_in => 0 do |job|
   http = Net::HTTP.new("api.github.com", Net::HTTP.https_default_port())
   http.use_ssl = true
   http.verify_mode = OpenSSL::SSL::VERIFY_NONE # disable ssl certificate check

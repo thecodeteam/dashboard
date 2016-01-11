@@ -17,7 +17,7 @@ max_results = 50
 ordered = true
 max_length = 8
 
-SCHEDULER.every '1m', :first_in => 0 do |job|
+SCHEDULER.every '1d', :first_in => 0 do |job|
   http = Net::HTTP.new("www.googleapis.com", Net::HTTP.https_default_port())
   http.use_ssl = true
   http.verify_mode = OpenSSL::SSL::VERIFY_NONE # disable ssl certificate check

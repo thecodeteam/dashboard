@@ -24,7 +24,7 @@ ordered = true
 last_page_number = 4
 
 
-SCHEDULER.every '1m', :first_in => 0 do |job|
+SCHEDULER.every '1d', :first_in => 0 do |job|
   repoArray = []
   for page_number in 1..last_page_number
     page = mechanize.get('https://hub.docker.com/u/' + docker_username + '?page=' + page_number.to_s)
