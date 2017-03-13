@@ -15,7 +15,7 @@ require 'keen'
 # Config
 # ------
 wp_host = ENV['WORDPRESS_HOST'] || 'public-api.wordpress.com'
-wp_site = ENV['WORDPRESS_SITE'] || 'blog.emccode.com'
+wp_site = ENV['WORDPRESS_SITE'] || 'blog.codedellemc.com'
 
 # The following line is only needed if you're deploying to Cloud Foundry
 wp_bearer = JSON.parse(ENV['VCAP_SERVICES'], :symbolize_names => true)[:'user-provided'][0][:credentials][:wordpress_api]
@@ -24,14 +24,14 @@ wp_bearer = JSON.parse(ENV['VCAP_SERVICES'], :symbolize_names => true)[:'user-pr
 #wp_bearer = ENV['WORDPRESS_BEARER'] || 'YOUR_TOKEN_HERE'
 
 # number of posts to display in the list
-max_length = 8
+max_length = 13
 
 # order the list by the numbers
 ordered = true
 wp_period = 'year'
 number_of_periods = 5
 
-SCHEDULER.every '1d', :first_in => 0 do |job|
+SCHEDULER.every '60m', :first_in => 0 do |job|
   http = Net::HTTP.new(wp_host, 443)
   all = Net::HTTP::Get.new("https://#{wp_host}/rest/v1.1/sites/#{wp_site}/stats/summary?period=#{wp_period}&num=#{number_of_periods}&pretty=true", initheader = {'Content-Type' =>'application/json', 'Authorization' => "Bearer #{wp_bearer}"})
   posts = Net::HTTP::Get.new("https://#{wp_host}/rest/v1.1/sites/#{wp_site}/stats/top-posts?&period=#{wp_period}&max=#{max_length}&num=#{number_of_periods}&pretty=true", initheader = {'Content-Type' =>'application/json', 'Authorization' => "Bearer #{wp_bearer}"})
@@ -51,10 +51,12 @@ SCHEDULER.every '1d', :first_in => 0 do |job|
     first_day_of_year = data_posts[:days].flatten.first
 
     data_posts[:days][first_day_of_year][:postviews].each do |post|
-      posts_stats.push({
-        label: post[:title],
-        value: post[:views]
-      })
+      unless post[:id] == 0 || post[:id] == 5857 || post[:id] == 5751 || post[:id] == 5745 || post[:type] != "post"
+        posts_stats.push({
+          label: post[:title],
+          value: post[:views]
+        })
+      end
     end
 
     if ordered

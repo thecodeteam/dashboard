@@ -8,9 +8,9 @@ require 'keen'
 
 # Config
 # ------
-twitter_username = ENV['TWITTER_USERNAME'] || 'emccode'
+twitter_username = ENV['TWITTER_USERNAME'] || 'codedellemc'
 
-SCHEDULER.every '1d', :first_in => 0 do |job|
+SCHEDULER.every '60m', :first_in => 0 do |job|
   doc = Nokogiri::HTML(open("https://twitter.com/#{twitter_username}"))
   tweets = doc.css('a[data-nav=tweets]').first.attributes['title'].value.split(' ').first
   followers = doc.css('a[data-nav=followers]').first.attributes['title'].value.split(' ').first
@@ -19,5 +19,5 @@ SCHEDULER.every '1d', :first_in => 0 do |job|
   send_event('twitter_user_tweets', current: tweets)
   send_event('twitter_user_followers', current: followers)
   send_event('twitter_user_following', current: following)
-  Keen.publish(:twitter, { :handle => 'emccode', :tweets => tweets.gsub(/,/,'').to_i, :followers => followers.gsub(/,/,'').to_i })
+  Keen.publish(:twitter, { :handle => 'codedellemc', :tweets => tweets.gsub(/,/,'').to_i, :followers => followers.gsub(/,/,'').to_i })
 end

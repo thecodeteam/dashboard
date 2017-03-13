@@ -17,7 +17,7 @@ max_results = 50
 ordered = true
 max_length = 8
 
-SCHEDULER.every '1d', :first_in => 0 do |job|
+SCHEDULER.every '60m', :first_in => 0 do |job|
   http = Net::HTTP.new("www.googleapis.com", Net::HTTP.https_default_port())
   http.use_ssl = true
   http.verify_mode = OpenSSL::SSL::VERIFY_NONE # disable ssl certificate check
@@ -64,7 +64,7 @@ SCHEDULER.every '1d', :first_in => 0 do |job|
       #send_event('youtube_video_likes', current: videos[0]['likeCount'])
       #send_event('youtube_video_comments', current: videos[0]['commentCount'])
       #send_event('youtube_video_favorites', current: videos[0]['favoriteCount'])
-      #Keen.publish(:youtube_video_views, { :youtube_video_title => youtube_stats[:label], :views => youtube_stats[:value] })
+      Keen.publish(:youtube_video_views, { :youtube_video_title => youtube_stats[:label], :views => youtube_stats[:value] })
     else
       puts youtube_stats
     end

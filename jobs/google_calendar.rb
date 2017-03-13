@@ -4,7 +4,7 @@ ical_url = 'https://calendar.google.com/calendar/ical/52rlkjj3h1lsfqmi5hr0475ceg
 #ical_url = 'https://www.google.com/calendar/ical/52rlkjj3h1lsfqmi5hr0475ceg%40group.calendar.google.com/public/basic.ics'
 uri = URI ical_url
 
-SCHEDULER.every '15s', :first_in => 4 do |job|
+SCHEDULER.every '1m', :first_in => 4 do |job|
 #  result = Net::HTTP.get uri
   parsed_url = URI.parse(ical_url)
   puts parsed_url
